@@ -24,6 +24,11 @@ module.exports = (env, argv) => {
             scripts: path.resolve('./src', 'build', 'scripts'),
             styles: path.resolve('./src', 'build', 'styles'),
             templates: path.resolve('./src', 'build', 'templates'),
+        },
+        performance: {
+            hints: false,
+            maxEntrypointSize: 5120000,
+            maxAssetSize: 5120000
         }
 
     };
@@ -92,9 +97,9 @@ module.exports = (env, argv) => {
             // Copy Cesium Assets, Widgets, and Workers to a static directory
             new CopyWebpackPlugin({
                 patterns: [
-                    { from: path.join(cesiumSource, cesiumWorkers), to: 'js/Workers' },
-                    { from: path.join(cesiumSource, 'Assets'), to: 'js/Assets' },
-                    { from: path.join(cesiumSource, 'Widgets'), to: 'js/Widgets' }
+                    { from: path.join(cesiumSource, cesiumWorkers), to: 'Workers' },
+                    { from: path.join(cesiumSource, 'Assets'), to: 'Assets' },
+                    { from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' }
                 ]
             }),
             new webpack.DefinePlugin({
